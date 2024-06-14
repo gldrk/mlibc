@@ -194,7 +194,7 @@ void *memmove(void *dest, const void *src, size_t size) {
 	uintptr_t udest = reinterpret_cast<uintptr_t>(dest);
 	uintptr_t usrc = reinterpret_cast<uintptr_t>(src);
 
-	if(udest < usrc || usrc + size <= udest) {
+	if(udest < usrc || udest - usrc >= size) {
 		return forward_copy(dest, src, size);
 	} else if(udest > usrc) {
 		char *dest_bytes = (char *)dest;
